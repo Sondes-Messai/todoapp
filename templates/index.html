@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}
+Mes tâches | 
+{% endblock title %}
+{% block content %}
+    <h1>Hello, this is my ToDo App using by Sondes!</h1>
+    <form method="post">
+    {% csrf_token %}
+        {{task_form.title}}
+        <button type="submit">Ajouter</button>
+    </form>
+    <ol>
+        {% for task in tasks %}
+        	<li>
+				{% if task.completed == True %}
+                    <strike> {{task.title}} </strike>
+                {% else %}
+                    {{task.title}}
+                {% endif %}
+                | <a href="{% url 'update' task.id %}">Modifier</a>
+                | <a href="{% url 'delete' task.id %}">Supprimer</a>
+        	</il>
+        {% endfor %}
+    </ol>
+{% endblock content %}
+
+
+
+<!-- TODO CURRENT WORK-->
+
+<table>
+ 
+    <thead>
+      <tr>
+        <th scope="col">Person</th>
+        <th scope="col">Most interest in</th>
+        <th scope="col">Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Chris</th>
+        <td>HTML tables</td>
+        <td>22</td>
+      </tr>
+      <tr>
+        <th scope="row">Dennis</th>
+        <td>Web accessibility</td>
+        <td>45</td>
+    </tr>
+    <tr>
+      <th scope="row">Sarah</th>
+      <td>JavaScript frameworks</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th scope="row">Karen</th>
+      <td>Web performance</td>
+      <td>36</td>
+    </tr>
+  </tbody>
+  
+</table>
